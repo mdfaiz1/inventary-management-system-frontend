@@ -38,23 +38,23 @@ export const navbarLinks = [
     ],
   },
   {
-    title: "Customers",
+    title: "Location",
     links: [
       {
-        label: "Customers",
+        label: "Location",
         icon: Users,
-        path: "/customers",
+        path: "/location",
       },
-      {
-        label: "New customer",
-        icon: UserPlus,
-        path: "/new-customer",
-      },
-      {
-        label: "Verified customers",
-        icon: UserCheck,
-        path: "/verified-customers",
-      },
+      // {
+      //   label: "New customer",
+      //   icon: UserPlus,
+      //   path: "/new-customer",
+      // },
+      // {
+      //   label: "Verified customers",
+      //   icon: UserCheck,
+      //   path: "/verified-customers",
+      // },
     ],
   },
   {

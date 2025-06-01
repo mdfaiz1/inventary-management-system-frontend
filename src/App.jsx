@@ -1,6 +1,7 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./routes/layout";
+import Location from "./pages/location";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -14,8 +15,8 @@ const App = () => {
           element: <h1 className="title">Dashboard</h1>,
         },
         {
-          path: "analytics",
-          element: <h1 className="title">Analytics</h1>,
+          path: "Location",
+          element: <Location/>,
         },
         {
           path: "reports",

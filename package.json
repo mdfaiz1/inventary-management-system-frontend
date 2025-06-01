@@ -12,12 +12,16 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.1.8",
     "@uidotdev/usehooks": "^2.4.1",
+    "antd": "^5.25.4",
     "clsx": "^2.1.1",
     "lucide-react": "^0.511.0",
+    "primereact": "^10.9.5",
     "prop-types": "^15.8.1",
     "react": "^19.1.0",
+    "react-data-table-component": "^7.7.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.1",
+    "styled-components": "^6.1.18",
     "tailwind-merge": "^3.3.0",
     "tailwindcss": "^4.1.8"
   },
