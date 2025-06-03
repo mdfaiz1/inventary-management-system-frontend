@@ -2,6 +2,8 @@ import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./routes/layout";
 import Location from "./pages/location";
+import { Provider } from "react-redux";
+import { store } from "./redux/store/store";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -54,9 +56,9 @@ const App = () => {
     },
   ]);
   return (
-    <div>
+    <Provider store={store}>
       <RouterProvider router={router} />
-    </div>
+    </Provider>
   );
 };
 

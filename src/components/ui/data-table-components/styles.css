@@ -1,0 +1,48 @@
+.custom-table .ant-table-thead > tr > th {
+  background-color: #1890ff; /* Your desired color */
+  color: white;              /* Text color for contrast */
+}
+/* Container background */
+.ant-pagination {
+  background-color: #2b7fff;  /* Light gray background */
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* Page number buttons */
+.ant-pagination-item {
+  border: 1px solid #1890ff;
+  color: #FCF8FA;
+}
+
+/* On hover */
+.ant-pagination-item:hover {
+  border-color: #40a9ff;
+  color: #FCF8FA;
+}
+
+/* Active page number */
+.ant-pagination-item-active {
+  background-color: #1890ff;
+  border-color: #1890ff;
+  color: white;
+}
+
+/* Prev / Next arrow buttons */
+.ant-pagination-prev .ant-pagination-item-link,
+.ant-pagination-next .ant-pagination-item-link {
+  color: #FCF8FA;
+  border-color: #1890ff;
+}
+
+/* Hover effect on arrows */
+.ant-pagination-prev:hover .ant-pagination-item-link,
+.ant-pagination-next:hover .ant-pagination-item-link {
+  color: #FCF8FA;
+  border-color: #40a9ff;
+}
+
+/* Quick jumper input */
+.ant-pagination-options-quick-jumper input {
+  border-color: #1890ff;
+}

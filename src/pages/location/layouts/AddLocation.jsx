@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import { Button, Modal } from "antd";
+import locationModel from "../../../models/location.model";
 
 const AddLocation = () => {
   const [modal2Open, setModal2Open] = useState(false);
   const [locationName, setLocationName] = useState("");
   
-  const handleSave = (e) => {
+  const handleSave = async (e) => {
     e.preventDefault();
-    // console.log(saved);
+    await locationModel.createLocation({
+      locationName: locationName,
+    });
+    
+
     setLocationName("");
+    setModal2Open(false);
     
   };
 
@@ -24,14 +30,14 @@ const AddLocation = () => {
         onCancel={() => setModal2Open(false)}
       >
         
-        <div class="bg-white text-gray-500 w-full  md:p-6 p-4 text-left text-sm rounded  shadow-black/10">
-          <h2 class="text-2xl font-semibold mb-6 text-center text-gray-800">
+        <div className="bg-white text-gray-500 w-full  md:p-6 p-4 text-left text-sm rounded  shadow-black/10">
+          <h2 className="text-2xl font-semibold mb-6 text-center text-gray-800">
             Add Location
           </h2>
-          <label for="email">Location Name</label>
+          <label htmlFor="email">Location Name</label>
           <input
             id="email"
-            class="w-full border mt-1 border-gray-500/30 focus:border-indigo-500 outline-none rounded py-2.5 px-4"
+            className="w-full border mt-1 border-gray-500/30 focus:border-indigo-500 outline-none rounded py-2.5 px-4"
             type="text"
             placeholder="Enter Location Name"
             value={locationName}
@@ -40,7 +46,7 @@ const AddLocation = () => {
           <button
             type="button"
             onClick={handleSave}
-            class="w-full my-3 bg-gray-800 active:scale-95 transition py-2.5 rounded text-white"
+            className="w-full my-3 bg-gray-800 active:scale-95 transition py-2.5 rounded text-white"
           >
             Save
           </button>
