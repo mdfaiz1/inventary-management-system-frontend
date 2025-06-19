@@ -1,38 +1,30 @@
+import React from "react";
 import DataTable from "../../../components/ui/data-table-components";
 import { Button, Input, Space } from "antd";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { SearchOutlined } from "@ant-design/icons";
-import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchLocations } from "../../../redux/features/locationSlice.jsx";
-import { deleteLocation } from "../../../redux/features/locationSlice.jsx";
-const LocationTable = () => {
+import { fetchSubLocations } from "../../../redux/features/subLocationSlice";
+
+const DataTableSubLocation = () => {
+  const [searchedColumn, setSearchedColumn] = useState("");
   const dispatch = useDispatch();
-  const { locationData, loading } = useSelector((state) => state.location);
-  // console.log(locationData);
+  const { subLocationData, loading } = useSelector(
+    (state) => state.subLocation
+  );
+  console.log(subLocationData);
 
   useEffect(() => {
-    dispatch(fetchLocations());
+    dispatch(fetchSubLocations());
   }, []);
-
-  const [searchText, setSearchText] = useState("");
-  const [searchedColumn, setSearchedColumn] = useState("");
-  const searchInput = useRef(null);
-  const handleSearch = (selectedKeys, confirm, dataIndex) => {
-    confirm();
-    setSearchText(selectedKeys[0]);
-    setSearchedColumn(dataIndex);
-  };
-  const handleReset = (clearFilters) => {
-    clearFilters();
-    setSearchText("");
-  };
-  const data = locationData.map((location, idx) => ({
+  const data = subLocationData.map((subLocation, idx) => ({
     key: idx + 1,
-    locationName: location.locationName,
-    _id: location._id,
+    subLocationName: subLocation.subLocation,
+    location: subLocation.location,
+    _id: subLocation._id,
   }));
 
+  const searchInput = useRef(null);
   const getColumnSearchProps = (dataIndex) => ({
     filterDropdown: ({
       setSelectedKeys,
@@ -121,81 +113,56 @@ const LocationTable = () => {
         text
       ),
   });
-  // const columns = [
-  //   Object.assign({
-  //     title: "#",
-  //     dataIndex: "index",
-  //     key: "index",
-  //     width: "4%",
-  //   }),
-  //   Object.assign(
-  //     Object.assign(
-  //       {
-  //         title: "Location Name",
-  //         dataIndex: "locationName",
-  //         key: "locationName",
-  //         width: "30%",
-  //       },
-  //       getColumnSearchProps("name")
-  //     ),
-  //     {
-  //       sorter: (a, b) => a.name.length - b.name.length,
-  //       sortDirections: ["descend", "ascend"],
-  //     }
-  //   ),
-  //   Object.assign({
-  //     title: "Action",
-  //     dataIndex: "age",
-  //     key: "age",
-  //     width: "20%",
-  //   }),
-  // ];
+  const columns = [
+    {
+      title: "#",
+      dataIndex: "key",
+      key: "key",
+      width: "4%",
+    },
+    {
+      title: "Sub Location Name",
+      dataIndex: "subLocationName",
+      key: "subLocationName",
+      width: "30%",
+      ...getColumnSearchProps("name"),
+      sorter: (a, b) => a.name.length - b.name.length,
+      sortDirections: ["descend", "ascend"],
+    },
+    {
+      title: "Location Name",
+      dataIndex: "location",
+      key: "location",
+      width: "30%",
+      ...getColumnSearchProps("name"),
+      sorter: (a, b) => a.name.length - b.name.length,
+      sortDirections: ["descend", "ascend"],
+    },
+    {
+      title: "Action",
+      dataIndex: "age",
+      key: "action",
+      width: "20%",
+      render: (_, record) => (
+        <div style={{ display: "flex", gap: "8px" }}>
+          <button onClick={() => handleEdit(record)}>Edit</button>
+          <button onClick={() => handleDelete(record)}>Delete</button>
+        </div>
+      ),
+    },
+  ];
 
-  const handleEdit = (record) => {
-    console.log("Edit record:", record._id);
-  };
-  const handleDelete = async (record) => {
-    try {
-      dispatch(deleteLocation(record._id));
-      dispatch(fetchLocations());
-    } catch (error) {
-      console.log("Error deleting location:", error);
-    }
-  };
+  // const data = null;
+
   if (loading) {
     return <div>Loading...</div>;
   }
 
   return (
     <div>
-      <DataTable
-        data={data}
-        columns={[
-          { title: "#", dataIndex: "key", key: "key" },
-          {
-            title: "Location Name",
-            dataIndex: "locationName",
-            key: "locationName",
-          },
-          {
-            title: "Action",
-            key: "action",
-            render: (_, record) => (
-              <Space>
-                <Button type="primary" onClick={() => handleEdit(record)}>
-                  Edit
-                </Button>
-                <Button type="primary" onClick={() => handleDelete(record)}>
-                  Delete
-                </Button>
-              </Space>
-            ),
-          },
-          ,
-        ]}
-      />
+      <DataTable data={data} columns={columns} />
     </div>
   );
 };
 
-export default LocationTable;
+export default DataTableSubLocation;

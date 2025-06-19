@@ -255,7 +255,6 @@ const Location = () => {
     <div className="">
       <AddLocation />
       <div className="text-white">
-        {/* <DataTable data={data} columns={columns} /> */}
         <LocationTable/>
       </div>
     </div>

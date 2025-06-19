@@ -45,11 +45,11 @@ export const navbarLinks = [
         icon: Users,
         path: "/location",
       },
-      // {
-      //   label: "New customer",
-      //   icon: UserPlus,
-      //   path: "/new-customer",
-      // },
+      {
+        label: "Sub Location",
+        icon: UserPlus,
+        path: "/sub-location",
+      },
       // {
       //   label: "Verified customers",
       //   icon: UserCheck,

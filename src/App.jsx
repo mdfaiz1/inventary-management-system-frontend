@@ -4,6 +4,8 @@ import Layout from "./routes/layout";
 import Location from "./pages/location";
 import { Provider } from "react-redux";
 import { store } from "./redux/store/store";
+import SubLocation from "./pages/sub-location";
+import AddProduct from "./pages/products/layouts/AddProduct";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -18,15 +20,15 @@ const App = () => {
         },
         {
           path: "Location",
-          element: <Location/>,
+          element: <Location />,
         },
         {
-          path: "reports",
-          element: <h1 className="title">Reports</h1>,
+          path: "sub-location",
+          element: <SubLocation />,
         },
         {
-          path: "customers",
-          element: <h1 className="title">Customers</h1>,
+          path: "add-product",
+          element: <AddProduct />,
         },
         {
           path: "new-customer",

@@ -1,20 +1,22 @@
 import React, { useState } from "react";
 import { Button, Modal } from "antd";
-import locationModel from "../../../models/location.model";
+import { useDispatch, useSelector } from "react-redux";
+import { createLocation } from "../../../redux/features/locationSlice";
+import { fetchLocations } from "../../../redux/features/locationSlice";
 
 const AddLocation = () => {
+  const dispatch = useDispatch();
   const [modal2Open, setModal2Open] = useState(false);
   const [locationName, setLocationName] = useState("");
-  
+  const {loading} = useSelector((state) => state.location);
   const handleSave = async (e) => {
     e.preventDefault();
-    await locationModel.createLocation({
-      locationName: locationName,
-    });
-    
-
+    dispatch(createLocation(locationName));
+    dispatch(fetchLocations())
     setLocationName("");
-    setModal2Open(false);
+    if(!loading) {
+      setModal2Open(false);
+    }
     
   };
 
@@ -42,6 +44,7 @@ const AddLocation = () => {
             placeholder="Enter Location Name"
             value={locationName}
             onChange={(e) => setLocationName(e.target.value)}
+            required
           />
           <button
             type="button"
